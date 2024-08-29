@@ -10,21 +10,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
-      BC_API_KEY: ${{ secrets.BC_API_KEY }}
     steps:
-      - uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4       
       - name: Install checkov
         run: pip install -U checkov
 
       - name: Get all policies from Prisma
+        env:
+          PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
+          BC_API_KEY: ${{ secrets.BC_API_KEY }}
         run: |
           echo "All available checks"
-          checkov -l --output-bc-ids --prisma-api-url "${{ secrets.PRISMA_API_URL }}" --bc-api-key "${{ secrets.BC_API_KEY }}" > ./all_policies.txt
+          checkov -l --output-bc-ids > ./all_policies.txt
       
       - name: Get filtered policies from Prisma
+        env:
+          PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
+          BC_API_KEY: ${{ secrets.BC_API_KEY }}
         run: |
           echo "Filtered checks by compliance standard"
           checkov -l --output-bc-ids --prisma-api-url "${{ secrets.PRISMA_API_URL }}" --bc-api-key "${{ secrets.BC_API_KEY }}" --policy-metadata-filter policy.complianceStandard="ACSC Information Security Manual (ISM)" > ./filtered_policies.txt
