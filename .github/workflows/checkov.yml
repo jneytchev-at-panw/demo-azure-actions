@@ -17,8 +17,8 @@ jobs:
 
       - name: Get all policies from Prisma
         env:
-          PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
-          BC_API_KEY: ${{ secrets.BC_API_KEY }}
+          PRISMA_API_URL: "${{ secrets.PRISMA_API_URL }}"
+          BC_API_KEY: "${{ secrets.BC_API_KEY }}"
         run: |
           env | grep BC
           echo "All available checks"
@@ -26,8 +26,8 @@ jobs:
       
       - name: Get filtered policies from Prisma
         env:
-          PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
-          BC_API_KEY: ${{ secrets.BC_API_KEY }}
+          PRISMA_API_URL: "${{ secrets.PRISMA_API_URL }}"
+          BC_API_KEY: "${{ secrets.BC_API_KEY }}"
         run: |
           echo "Filtered checks by compliance standard"
           env | grep PRISMA
