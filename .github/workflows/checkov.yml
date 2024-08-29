@@ -9,12 +9,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: bridgecrew/checkov
     environment: caterpillar
     steps:
       - uses: actions/checkout@v4       
-      - name: Install checkov
-        run: pip install -U checkov
+      #- name: Install checkov
+      #  run: pip install -U checkov
 
       - name: Get all policies from Prisma
         env:
