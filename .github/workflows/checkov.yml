@@ -22,9 +22,9 @@ jobs:
       - name: Get all policies from Prisma
         run: |
           echo "All available checks"
-          checkov -l --output-bc-ids --prisma-api-url "${{ env.$PRISMA_API_URL }}" --bc-api-key "${{ $BC_API_KEY }}" > ./all_policies.txt
+          checkov -l --output-bc-ids --prisma-api-url "${{ env.$PRISMA_API_URL }}" --bc-api-key "${{ env.$BC_API_KEY }}" > ./all_policies.txt
       
       - name: Get filtered policies from Prisma
         run: |
           echo "Filtered checks by compliance standard"
-          checkov -l --output-bc-ids --prisma-api-url "${{ env.$PRISMA_API_URL }}" --bc-api-key "${{ $BC_API_KEY }}" --policy-metadata-filter policy.complianceStandard="ACSC Information Security Manual (ISM)" > ./filtered_policies.txt
+          checkov -l --output-bc-ids --prisma-api-url "${{ env.$PRISMA_API_URL }}" --bc-api-key "${{ env.$BC_API_KEY }}" --policy-metadata-filter policy.complianceStandard="ACSC Information Security Manual (ISM)" > ./filtered_policies.txt
