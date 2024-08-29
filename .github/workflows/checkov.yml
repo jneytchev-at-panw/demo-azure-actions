@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
-      BC_API_KEY: $ {{ secrets.BC_API_KEY }}
+      BC_API_KEY: ${{ secrets.BC_API_KEY }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
