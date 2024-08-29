@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    env:
+      PRISMA_API_URL: ${{ secrets.PRISMA_API_URL }}
+      BC_API_KEY: ${{ secrets.BC_API_KEY }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Default set of checks
+        id: checkov-all
+        uses: bridgecrewio/checkov-action@master
+        with:
+          list: true
+          output_bc_ids: true
+
+      - name: Filtered checks
+        id: checkov-filtered
+        uses: bridgecrewio/checkov-action@master
+        with:
+          list: true
+          output_bc_ids: true
+          policy_metadata_filter: policy.complianceStandard="ACSC Information Security Manual (ISM)" 
+          
