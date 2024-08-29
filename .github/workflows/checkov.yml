@@ -30,5 +30,4 @@ jobs:
           BC_API_KEY: "${{ secrets.BC_API_KEY }}"
         run: |
           echo "Filtered checks by compliance standard"
-          pwd
-          checkov -l --output-bc-ids --prisma-api-url "${{ secrets.PRISMA_API_URL }}" --bc-api-key "${{ secrets.BC_API_KEY }}" --policy-metadata-filter policy.complianceStandard="ACSC Information Security Manual (ISM)"
+          checkov -l --output-bc-ids --policy-metadata-filter policy.complianceStandard="ACSC Information Security Manual (ISM)"
